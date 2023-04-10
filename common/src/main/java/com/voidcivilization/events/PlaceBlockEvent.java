@@ -53,6 +53,7 @@ public class PlaceBlockEvent {
                 civ.get().setNucleus(pos);
                 civManager.setDirty();
                 Messenger.sendClientSuccess(player, "Nucleus added to " + civName);
+                civManager.syncClientCivilizationData(player.getLevel());
             }
 
             return EventResult.pass();
