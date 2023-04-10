@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "voidcivilization",
+  "version": "${version}",
+  "name": "Void Civilization",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Daan Schar"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "Insert License Here",
+  "icon": "assets/examplemod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.voidcivilization.fabric.VoidCivilizationClientFabric"
+    ],
+    "main": [
+      "com.voidcivilization.fabric.VoidCivilizationFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.2",
+    "architectury": ">=6.2.43"
+  },
+  "mixins": [
+    "voidcivilization-common.mixins.json"
+  ]
+}
