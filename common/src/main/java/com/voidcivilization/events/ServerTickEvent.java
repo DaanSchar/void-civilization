@@ -13,8 +13,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec3;
 
 
 public class ServerTickEvent {
@@ -125,23 +123,6 @@ public class ServerTickEvent {
             return;
         }
 
-//        Vec3 direction = getDirection(nucleusPos, playerPos);
-//
-//        Vec3 newPos = new Vec3(
-//                nucleusPos.getX() + direction.x * (range - 2),
-//                playerPos.getY(),
-//                nucleusPos.getZ() + direction.z * (range - 2)
-//        );
-
-//        ServerLevel level = player.getLevel();
-//        BlockPos blockPos = new BlockPos(newPos.x, newPos.y, newPos.z);
-
-//        while(
-//                !level.getBlockState(blockPos).getBlock().equals(Blocks.AIR) &&
-//                !level.getBlockState(blockPos.above()).getBlock().equals(Blocks.AIR)
-//        ) {
-//            blockPos = blockPos.above();
-//        }
         var spawn = civ.get().getSpawn();
 
         if (spawn.isEmpty()) {
@@ -157,14 +138,6 @@ public class ServerTickEvent {
 
     private static double getFlatDistance(BlockPos from, BlockPos to) {
         return Math.sqrt(Math.pow(from.getX() - to.getX(), 2) + Math.pow(from.getZ() - to.getZ(), 2));
-    }
-
-    private static Vec3 getDirection(BlockPos from, BlockPos to) {
-        return new Vec3(
-                to.getX() - from.getX(),
-                to.getY() - from.getY(),
-                to.getZ() - from.getZ()
-        ).normalize();
     }
 
     private static void boostPlayersInBase(ServerPlayer player) {
