@@ -4,14 +4,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.voidcivilization.data.civilization.Civilization;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import org.slf4j.LoggerFactory;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class HudRenderHelper {
+public class HudRenderer {
 
     public static void render(PoseStack matrixStack, float tickDelta) {
         Minecraft client = Minecraft.getInstance();
