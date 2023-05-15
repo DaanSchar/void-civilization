@@ -1,7 +1,9 @@
-package com.voidcivilization.client;
+package com.voidcivilization.client.rendering;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
+import com.voidcivilization.client.data.ClientCivilizationData;
+import com.voidcivilization.client.data.ClientConfigData;
 import com.voidcivilization.data.civilization.Civilization;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;

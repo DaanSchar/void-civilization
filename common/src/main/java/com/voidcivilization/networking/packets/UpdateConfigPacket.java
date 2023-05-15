@@ -1,6 +1,6 @@
 package com.voidcivilization.networking.packets;
 
-import com.voidcivilization.client.ClientConfigData;
+import com.voidcivilization.client.data.ClientConfigData;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.network.FriendlyByteBuf;
 

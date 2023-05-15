@@ -4,6 +4,7 @@ import com.voidcivilization.VoidCivilization;
 import com.voidcivilization.commands.SetForceFieldRangeCommand;
 import com.voidcivilization.data.civilization.CivilizationManager;
 import com.voidcivilization.data.death.DeathTracker;
+import com.voidcivilization.data.kda.KDATracker;
 import com.voidcivilization.util.Messenger;
 import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.core.BlockPos;
@@ -23,10 +24,12 @@ public class ServerTickEvent {
                 return;
             }
 
+            var kdaTracker = KDATracker.get(level);
+            kdaTracker.update();
+
             if (VoidCivilization.config.playerDeathCooldown > 0) {
                 handleDeathTracking(level);
             }
-
         });
         TickEvent.PLAYER_POST.register(player -> {
             if (player.level.isClientSide) {

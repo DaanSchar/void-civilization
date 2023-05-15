@@ -3,6 +3,7 @@ package com.voidcivilization.events;
 import com.voidcivilization.VoidCivilization;
 import com.voidcivilization.data.civilization.CivilizationManager;
 import com.voidcivilization.data.death.DeathTracker;
+import com.voidcivilization.data.kda.KDATracker;
 import com.voidcivilization.networking.NetworkHandler;
 import com.voidcivilization.networking.packets.MemberDeathPacket;
 import com.voidcivilization.util.Messenger;
@@ -12,11 +13,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.UserBanListEntry;
 import net.minecraft.world.item.ItemStack;
+import org.slf4j.LoggerFactory;
 
 public class PlayerDeathEvent {
 
     public static void register() {
         EntityEvent.LIVING_DEATH.register((livingEntity, damageSource) -> {
+            KDATracker kdaTracker = KDATracker.get(livingEntity.getLevel());
+
             if (livingEntity instanceof ServerPlayer player) {
                 var civManager = CivilizationManager.get(player.getLevel());
                 var civ = civManager.getCivilization(player.getGameProfile());
@@ -25,12 +29,15 @@ public class PlayerDeathEvent {
                     return EventResult.pass();
                 }
 
-                NetworkHandler.sendToAllPlayers(player.getLevel(), new MemberDeathPacket(civ.get()));
+                kdaTracker.handleDeath(player);
+                NetworkHandler.sendToAllPlayers(player.getLevel(), new MemberDeathPacket(player.getGameProfile(), damageSource));
 
                 civ.get().damage(VoidCivilization.config.damagePerPlayerDeath);
                 civManager.setDirty();
 
                 if (damageSource.getEntity() instanceof ServerPlayer killer) {
+                    Messenger.sendClientSuccess(player, "KDA: " + kdaTracker.getKDA(player.getGameProfile()).toString());
+
                     if (!civManager.areInSameCiv(player.getGameProfile(), killer.getGameProfile())) {
                         awardKiller(killer);
                     }
@@ -92,6 +99,9 @@ public class PlayerDeathEvent {
 
     private static void awardKiller(ServerPlayer killer) {
         killer.giveExperiencePoints(VoidCivilization.config.expAwardedOnPlayerKill);
+        Messenger.sendClientSuccess(killer, "+" + VoidCivilization.config.expAwardedOnPlayerKill + " EXP");
+        var kdaTracker = KDATracker.get(killer.getLevel());
+        kdaTracker.addKill(killer);
     }
 
 }

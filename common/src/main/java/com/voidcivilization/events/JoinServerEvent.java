@@ -8,6 +8,7 @@ import com.voidcivilization.commands.ToggleTpPlayerToCivSpawnCommand;
 import com.voidcivilization.data.player.PlayerManager;
 import com.voidcivilization.networking.NetworkHandler;
 import com.voidcivilization.networking.packets.UpdateConfigPacket;
+import com.voidcivilization.networking.packets.UpdateKDAPacket;
 import com.voidcivilization.util.Messenger;
 import dev.architectury.event.events.common.PlayerEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,6 +33,7 @@ public class JoinServerEvent {
             );
             var civManager = CivilizationManager.get(player.getLevel());
             civManager.syncClientCivilizationData(player.getLevel());
+            NetworkHandler.sendToAllPlayers(player.getLevel(), new UpdateKDAPacket(player.getLevel()));
 
             if (!VoidCivilization.config.autoAssignPlayersToCivilization) {
                 return;

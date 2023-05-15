@@ -1,4 +1,4 @@
-package com.voidcivilization.client;
+package com.voidcivilization.client.data;
 
 import com.mojang.authlib.GameProfile;
 import com.voidcivilization.data.civilization.Civilization;

@@ -1,7 +1,7 @@
 package com.voidcivilization.networking.packets;
 
 import com.voidcivilization.data.civilization.Civilization;
-import com.voidcivilization.client.ClientCivilizationData;
+import com.voidcivilization.client.data.ClientCivilizationData;
 import com.voidcivilization.util.Messenger;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.core.BlockPos;
