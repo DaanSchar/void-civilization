@@ -1,10 +1,7 @@
 package com.voidcivilization.networking;
 
 import com.voidcivilization.VoidCivilization;
-import com.voidcivilization.networking.packets.BreakNucleusPacket;
-import com.voidcivilization.networking.packets.MemberDeathPacket;
-import com.voidcivilization.networking.packets.SyncCivilizationsDataPacket;
-import com.voidcivilization.networking.packets.UpdateConfigPacket;
+import com.voidcivilization.networking.packets.*;
 import dev.architectury.networking.NetworkChannel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -41,6 +38,13 @@ public class NetworkHandler {
                 UpdateConfigPacket::encode,
                 UpdateConfigPacket::new,
                 UpdateConfigPacket::handle
+        );
+
+        CHANNEL.register(
+                UpdateKDAPacket.class,
+                UpdateKDAPacket::encode,
+                UpdateKDAPacket::new,
+                UpdateKDAPacket::handle
         );
     }
 

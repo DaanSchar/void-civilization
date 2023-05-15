@@ -1,6 +1,6 @@
 package com.voidcivilization.util;
 
-import com.voidcivilization.client.ClientCivilizationData;
+import com.voidcivilization.client.data.ClientCivilizationData;
 import com.voidcivilization.data.civilization.Civilization;
 import com.voidcivilization.data.civilization.CivilizationManager;
 import com.voidcivilization.data.death.DeathTracker;

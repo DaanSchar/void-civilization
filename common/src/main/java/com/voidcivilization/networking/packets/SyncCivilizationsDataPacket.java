@@ -1,6 +1,6 @@
 package com.voidcivilization.networking.packets;
 
-import com.voidcivilization.client.ClientCivilizationData;
+import com.voidcivilization.client.data.ClientCivilizationData;
 import com.voidcivilization.data.civilization.Civilization;
 import com.voidcivilization.data.civilization.CivilizationManager;
 import dev.architectury.networking.NetworkManager;

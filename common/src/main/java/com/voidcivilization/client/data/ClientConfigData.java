@@ -1,4 +1,4 @@
-package com.voidcivilization.client;
+package com.voidcivilization.client.data;
 
 
 public class ClientConfigData {

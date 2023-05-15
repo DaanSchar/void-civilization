@@ -1,6 +1,6 @@
 package com.voidcivilization.registry.blocks.custom.entity;
 
-import com.voidcivilization.client.ClientConfigData;
+import com.voidcivilization.client.data.ClientConfigData;
 import com.voidcivilization.registry.blocks.VCBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
